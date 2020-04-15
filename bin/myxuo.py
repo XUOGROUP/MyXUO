@@ -22,6 +22,7 @@
 ########################################################################################################################
 
 import pygame
+import copy
 import urllib2
 import requests
 import random
@@ -40,6 +41,11 @@ def start_page(screen):
     xuo_logo_white = pygame.image.load('../res/assets/XUOIcon-White.png')
     xuo_logo_white_rect = xuo_logo_white.get_rect()
     xuo_logo_white_rect.center = screen.get_rect().center
+    # font_rect = copy.deepcopy(xuo_logo_white_rect)
+    font = pygame.font.SysFont(
+        Et.parse('../res/xml/style.xml').getroot().find('pages').find('start').find('font').text, 36)
+    myxuo_text = font.render('MyXUO', True, (255, 255, 255, 255))
+    # Blit font
     screen.blit(xuo_logo_white, xuo_logo_white_rect)
 
 
