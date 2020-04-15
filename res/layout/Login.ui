@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>360</width>
+    <height>540</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>360</width>
+    <height>540</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>360</width>
+    <height>540</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>登录XUOGROUP ID</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Form
+{background-color: #0bbbff;
+font-family: &quot;Microsoft YaHei UI&quot;, serif;
+text-align: center;
+}
+</string>
+  </property>
+  <widget class="QPushButton" name="Pic">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>50</y>
+     <width>240</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #0bbbff;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../assets/XUOIcon-White.png</normaloff>
+     <normalon>../assets/XUOIcon-White.png</normalon>
+     <disabledoff>../assets/XUOIcon-White.png</disabledoff>
+     <disabledon>../assets/XUOIcon-White.png</disabledon>
+     <activeoff>../assets/XUOIcon-White.png</activeoff>
+     <activeon>../assets/XUOIcon-White.png</activeon>
+     <selectedoff>../assets/XUOIcon-White.png</selectedoff>
+     <selectedon>../assets/XUOIcon-White.png</selectedon>../assets/XUOIcon-White.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>240</width>
+     <height>60</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Login">
+   <property name="geometry">
+    <rect>
+     <x>125</x>
+     <y>140</y>
+     <width>110</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+</string>
+   </property>
+   <property name="text">
+    <string>登录/注册</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="YourID">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>180</y>
+     <width>230</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+</string>
+   </property>
+   <property name="text">
+    <string>您的 XUOGROUP ID</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="ID">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>260</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>请输入您的XUOGROUP ID</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ID_L">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>260</y>
+     <width>26</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+</string>
+   </property>
+   <property name="text">
+    <string>ID</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="PSW_L">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>310</y>
+     <width>48</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+</string>
+   </property>
+   <property name="text">
+    <string>密码</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Password">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>310</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>请输入您的密码</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Submit">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>390</y>
+     <width>240</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#006400;
+color:#ffffff;</string>
+   </property>
+   <property name="text">
+    <string>登录/注册</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="CopyRight">
+   <property name="geometry">
+    <rect>
+     <x>45</x>
+     <y>470</y>
+     <width>270</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;
+</string>
+   </property>
+   <property name="text">
+    <string>(C) 2020 XUOGROUP. 保留所有权利。</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
