@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<style>
+    <pages>
+        <start>
+            <bg_color>friendship blue</bg_color>
+            <font>Microsoft YaHei UI</font>
+        </start>
+    </pages>
+</style>
