@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+# Follow us on <http://www.xuogroup.top>!
 # Thank you for choosing XUOGROUP software!
 ########################################################################################################################
 import webbrowser

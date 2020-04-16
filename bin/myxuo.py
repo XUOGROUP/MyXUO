@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+# Follow us on <http://www.xuogroup.top>!
 # Thank you for choosing XUOGROUP software!
 ########################################################################################################################
 
@@ -32,20 +33,42 @@ import os
 import sys
 from ast import literal_eval
 
+sys.path.append('./lib/')
+
+try:
+    import xuogroup_online
+except ImportError:
+    pass
+# Import modules
+
+
 MY_COLORS = {}
+SCREEN_SIZE = [1024, 768]
 
 
 def start_page(screen):
+
+    my_margin_horizontal = 75
+    my_margin_vertical = 100
+    xuo_margin_horizontal = 75
+    xuo_margin_vertical = 100
+
     screen.fill(get_colors(Et.parse(
         '../res/xml/style.xml').getroot().find('pages').find('start').find('bg_color').text))
+    # Fill screen
+
     xuo_logo_white = pygame.image.load('../res/assets/XUOIcon-White.png')
     xuo_logo_white_rect = xuo_logo_white.get_rect()
-    xuo_logo_white_rect.center = screen.get_rect().center
-    # font_rect = copy.deepcopy(xuo_logo_white_rect)
+    xuo_logo_white_rect.center = (screen.get_rect().center[0] + xuo_margin_horizontal,
+                                  screen.get_rect().center[1] + xuo_margin_vertical)
+
     font = pygame.font.SysFont(
-        Et.parse('../res/xml/style.xml').getroot().find('pages').find('start').find('font').text, 36)
-    myxuo_text = font.render('MyXUO', True, (255, 255, 255, 255))
-    # Blit font
+        Et.parse('../res/xml/style.xml').getroot().find('pages').find('start').find('font').text, 100)
+    myxuo_text = font.render('My', True, get_colors('white'))
+    myxuo_rect = myxuo_text.get_rect()
+    myxuo_rect.center = (screen.get_rect().center[0] + my_margin_horizontal,
+                         screen.get_rect().center[1] + my_margin_vertical)
+    screen.blit(myxuo_text, myxuo_rect)
     screen.blit(xuo_logo_white, xuo_logo_white_rect)
 
 
@@ -82,7 +105,7 @@ if __name__ == '__main__':
     append_colors(MY_COLORS, '../res/raw/art.ini')
 
     # Load files
-    screen_main = pygame.display.set_mode([640, 480])
+    screen_main = pygame.display.set_mode(SCREEN_SIZE)
     screen_main_rect = screen_main.get_rect()
     alpha_main = screen_main.convert_alpha()
     alpha_main_rect = alpha_main.get_rect()
@@ -103,4 +126,4 @@ if __name__ == '__main__':
 
         pygame.display.update()
     pygame.quit()
-sys.exit(0)
+    sys.exit(0)
