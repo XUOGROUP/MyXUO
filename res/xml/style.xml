@@ -3,7 +3,12 @@
     <pages>
         <start>
             <bg_color>friendship blue</bg_color>
-            <font>Monotype Corsiva</font>
+            <my_font>monotypecorsiva</my_font>
+            <my_color>white</my_color>
+            <footer_font>candara</footer_font>
+            <footer_color>twilight blue</footer_color>
+            <load_font>candara</load_font>
+            <load_color>white</load_color>
         </start>
     </pages>
 </style>

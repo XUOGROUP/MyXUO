@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 ########################################################################################################################
-# Main script for MyXUO v1.0
+# Support Modules for MyXUO v1.0
 #
 # (C) 2020 XUOGROUP, all rights reserved.
 # This software is released under a GNU GPL v3.0 License. Please READ it before you redistribute this software.
@@ -22,40 +22,24 @@
 # Thank you for choosing XUOGROUP software!
 ########################################################################################################################
 
-import pygame
-import sys
-import xlib
+from ast import literal_eval
+import ConfigParser as Cp
 
-# Import modules
+MY_COLORS = {}
+
+try:
+    reader = Cp.ConfigParser()
+    reader.read('../res/raw/art.ini')
+    items = reader.items('colors')
+    for i in items:
+        if not i[0] in MY_COLORS:
+            MY_COLORS[i[0]] = literal_eval(i[1])
+except Cp.Error:
+    pass
 
 
-if __name__ == '__main__':
-    pygame.init()
-    pygame.mixer.init()
-    # Init pygame
-
-    screen_main = pygame.display.set_mode(xlib.format.SCREEN_SIZE)
-    screen_main_rect = screen_main.get_rect()
-
-    alpha_main = screen_main.convert_alpha()
-    alpha_main_rect = alpha_main.get_rect()
-
-    pygame.display.set_caption(xlib.format.SCREEN_TITLE)
-    main_icon = pygame.image.load(xlib.pages.SCREEN_ICON)
-    pygame.display.set_icon(main_icon)
-    # Create screens
-    start_page = xlib.pages.StartPage(alpha_main)
-    start_page.draw()
-    # start page
-
-    screen_main.blit(alpha_main, [0, 0])
-    running = True
-
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-        pygame.display.update()
-    pygame.quit()
-    sys.exit(0)
+def get_colors(color):
+    try:
+        return MY_COLORS[color][:]
+    except KeyError:
+        return [0, 0, 0, 0]
