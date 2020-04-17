@@ -21,3 +21,26 @@
 # Follow us on <http://www.xuogroup.top>!
 # Thank you for choosing XUOGROUP software!
 ########################################################################################################################
+import sys
+import os.path
+from os import execv
+# Import modules
+try:
+    assert os.path.exists('./res/assets/XIcon.png')
+    assert os.path.exists('./res/assets/XUOIcon-White.png')
+    assert os.path.exists('res/config/artmd.ini')
+    assert os.path.exists('./res/sound/index.ini')
+    assert os.path.exists('./res/xml/rules.xml')
+    assert os.path.exists('./res/xml/rules.xml')
+    assert os.path.exists('./xlib/__init__.py')
+    assert os.path.exists('./xlib/art.py')
+    assert os.path.exists('./xlib/animate.py')
+    assert os.path.exists('./xlib/format.py')
+    assert os.path.exists('./xlib/pages.py')
+    assert os.path.exists('./xlib/online.py')
+    assert os.path.exists('./xlib/std.py')
+    assert os.path.exists('LICENSE')
+    execv('./myxuo.exe', ['myxuo.exe'])
+except (AssertionError, OSError):
+    sys.exit(3221225794)
+

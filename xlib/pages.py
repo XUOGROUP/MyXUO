@@ -25,7 +25,7 @@ import pygame
 import xml.etree.cElementTree as Et
 import art
 
-SCREEN_ICON = '../res/assets/XIcon.png'
+SCREEN_ICON = './res/assets/XIcon.png'
 
 
 class StartPage:
@@ -49,14 +49,14 @@ class StartPage:
         footer_size = f_s
         load_size = l_s
 
-        page_root = Et.parse('../res/xml/style.xml').getroot().find('pages').find('start')
+        page_root = Et.parse('./res/xml/style.xml').getroot().find('pages').find('start')
 
         screen.fill(art.get_colors(page_root.find('bg_color').text))
         # Fill screen
 
         screen_center = screen.get_rect().center
 
-        xuo_logo_white = pygame.image.load('../res/assets/XUOIcon-White.png')
+        xuo_logo_white = pygame.image.load('./res/assets/XUOIcon-White.png')
         xuo_logo_white_rect = xuo_logo_white.get_rect()
         xuo_logo_white_rect.center = (screen_center[0] + xuo_margin_horizontal,
                                       screen_center[1] + xuo_margin_vertical)

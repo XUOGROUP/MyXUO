@@ -61,7 +61,7 @@ if __name__ == '__main__':
     reply = raw_input('< Press [enter] to quit or enter [c] to read the full version of the license >')
     if reply.lower()[0] == 'c':
         try:
-            license_full_f = open('../LICENSE')
+            license_full_f = open('LICENSE')
             license_full = license_full_f.readlines()
             for string in license_full:
                 print string.strip()
