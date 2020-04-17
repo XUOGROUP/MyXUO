@@ -29,7 +29,7 @@ MY_COLORS = {}
 
 try:
     reader = Cp.ConfigParser()
-    reader.read('../res/raw/art.ini')
+    reader.read('../res/raw/artmd.ini')
     items = reader.items('colors')
     for i in items:
         if not i[0] in MY_COLORS:

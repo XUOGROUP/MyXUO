@@ -20,5 +20,6 @@
 # Follow us on <http://www.xuogroup.top>!
 # Thank you for choosing XUOGROUP software!
 ########################################################################################################################
-SCREEN_SIZE = [1024, 768]
+SCREEN_SIZE = [1280, 880]
 SCREEN_TITLE = 'MyXUO'
+SCREEN_LOCATION = (50, 70)

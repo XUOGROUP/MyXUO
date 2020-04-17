@@ -24,6 +24,7 @@
 
 import pygame
 import sys
+import os
 import xlib
 
 # Import modules
@@ -33,6 +34,10 @@ if __name__ == '__main__':
     pygame.init()
     pygame.mixer.init()
     # Init pygame
+
+    os.environ['SDL_VIDEO_WINDOW_POS'] = '%d, %d' % xlib.format.SCREEN_LOCATION
+
+    # Set window location
 
     screen_main = pygame.display.set_mode(xlib.format.SCREEN_SIZE)
     screen_main_rect = screen_main.get_rect()
