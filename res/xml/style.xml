@@ -4,11 +4,17 @@
         <start>
             <bg_color>friendship blue</bg_color>
             <my_font>monotypecorsiva</my_font>
+            <!-- Enter a system font for 'My' -->
             <my_color>white</my_color>
-            <footer_font>candara</footer_font>
+            <footer_font>./res/font/NotoSansHans-Light.otf</footer_font>
+            <!-- A font in ./res/font -->
             <footer_color>twilight blue</footer_color>
-            <load_font>microsoftyaheimicrosoftyaheiuilight</load_font>
+            <load_font>./res/font/NotoSansHans-Light.otf</load_font>
+            <!-- A font in ./res/font -->
             <load_color>white</load_color>
         </start>
+        <switch>
+            <font>./res/font/NotoSansHans-Light.otf</font>
+        </switch>
     </pages>
 </style>

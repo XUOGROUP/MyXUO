@@ -26,6 +26,8 @@ import pages
 import std
 import format
 import animate
+import ai
+import values
 
 __XLIB_TARGET = 'MyXUO'
 __LICENSE_HEAD = '''

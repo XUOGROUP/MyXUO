@@ -51,6 +51,7 @@ if __name__ == '__main__':
     # Create screens
     start_page = xlib.pages.StartPage(alpha_main)
     start_page.draw()
+    pygame.display.update()
     # start page
 
     screen_main.blit(alpha_main, [0, 0])

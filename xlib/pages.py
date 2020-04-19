@@ -32,10 +32,8 @@ class StartPage:
     def __init__(self, screen):
         self.SCREEN = screen
 
-    def draw(self, screen=None, x_m_h=75, x_m_v=-60, m_m_h=-175, m_m_v=-100, f_m_h=0, f_m_v=50, m_s=100,
-             f_s=42, l_m_h=0, l_m_v=130, l_s=36):
-        if screen is None:
-            screen = self.SCREEN
+    def draw(self, screen=None, x_m_h=120, x_m_v=-70, m_m_h=-250, m_m_v=-160, f_m_h=0, f_m_v=75, m_s=120,
+             f_s=42, l_m_h=0, l_m_v=155, l_s=36):
 
         xuo_margin_horizontal = x_m_h
         xuo_margin_vertical = x_m_v
@@ -49,6 +47,9 @@ class StartPage:
         footer_size = f_s
         load_size = l_s
 
+        if screen is None:
+            screen = self.SCREEN
+
         page_root = Et.parse('./res/xml/style.xml').getroot().find('pages').find('start')
 
         screen.fill(art.get_colors(page_root.find('bg_color').text))
@@ -56,7 +57,7 @@ class StartPage:
 
         screen_center = screen.get_rect().center
 
-        xuo_logo_white = pygame.image.load('./res/assets/XUOIcon-White.png')
+        xuo_logo_white = pygame.transform.scale(pygame.image.load('./res/assets/XUOIcon-White.png'), (543, 125))
         xuo_logo_white_rect = xuo_logo_white.get_rect()
         xuo_logo_white_rect.center = (screen_center[0] + xuo_margin_horizontal,
                                       screen_center[1] + xuo_margin_vertical)
@@ -71,7 +72,7 @@ class StartPage:
                              screen_center[1] + my_margin_vertical)
         # Render text 'My'
 
-        footer = pygame.font.SysFont(
+        footer = pygame.font.Font(
             page_root.find('footer_font').text, footer_size)
         footer_text = footer.render('XUOGROUP PRESENTS', True,
                                     art.get_colors(page_root.find('footer_color').text))
@@ -80,7 +81,7 @@ class StartPage:
                               screen_center[1] + footer_margin_vertical)
         # Render footer
 
-        load = pygame.font.SysFont(
+        load = pygame.font.Font(
             page_root.find('load_font').text, load_size)
         footer_text = footer.render('XUOGROUP PRESENTS', True,
                                     art.get_colors(page_root.find('footer_color').text))

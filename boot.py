@@ -23,6 +23,8 @@
 ########################################################################################################################
 import sys
 import os.path
+import traceback
+import datetime
 from os import execv
 # Import modules
 try:
@@ -40,7 +42,25 @@ try:
     assert os.path.exists('./xlib/online.py')
     assert os.path.exists('./xlib/std.py')
     assert os.path.exists('LICENSE')
+    assert os.path.exists('./res/font/NotoSansHans-Light.otf')
+    assert os.path.exists('./res/font/NotoSansHans-Black.otf')
+    assert os.path.exists('./res/font/NotoSansHans-Bold.otf')
+    assert os.path.exists('./res/font/NotoSansHans-DemiLight.otf')
+    assert os.path.exists('./res/font/NotoSansHans-Medium.otf')
+    assert os.path.exists('./res/font/NotoSansHans-Regular.otf')
+    assert os.path.exists('./res/font/NotoSansHans-Thin-Windows.otf')
     execv('./myxuo.exe', ['myxuo.exe'])
-except (AssertionError, OSError):
-    sys.exit(3221225794)
 
+
+except (AssertionError, OSError), e:
+    f = open('./Error.log', 'w')
+    f.write(str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+    f.write('\n')
+    f.write('An error occurred, please check if you have deleted any file.\n')
+    f.write('Exception Found:\n\n')
+    f.write(str(traceback.format_exc()))
+    f.write('\n')
+    f.close()
+    sys.exit(1)
+except WindowsError:
+    pass
