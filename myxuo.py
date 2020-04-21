@@ -27,13 +27,20 @@ import sys
 import os
 import xlib
 
+
 # Import modules
+def flush(alpha, main):
+    main.blit(alpha, (0, 0))
+    pygame.display.update()
 
 
 if __name__ == '__main__':
     pygame.init()
     pygame.mixer.init()
     # Init pygame
+
+    mainClock = xlib.animate.new_clock()
+    currentPage = xlib.values.START_PAGE
 
     os.environ['SDL_VIDEO_WINDOW_POS'] = '%d, %d' % xlib.format.SCREEN_LOCATION
 
@@ -50,18 +57,21 @@ if __name__ == '__main__':
     pygame.display.set_icon(main_icon)
     # Create screens
     start_page = xlib.pages.StartPage(alpha_main)
-    start_page.draw()
-    pygame.display.update()
-    # start page
-
-    screen_main.blit(alpha_main, [0, 0])
     running = True
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        if currentPage == xlib.values.START_PAGE and not start_page.done:
+            start_page.draw(alpha_main)
+            flush(alpha_main, screen_main)
+            # Draw loading
 
-        pygame.display.update()
+            uis = start_page.load()
+            # Load
+            start_page.draw(alpha_main)
+        flush(alpha_main, screen_main)
+        mainClock.tick(xlib.animate.RAPID_FPS)
     pygame.quit()
     sys.exit(0)

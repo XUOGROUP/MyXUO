@@ -31,8 +31,10 @@ SCREEN_ICON = './res/assets/XIcon.png'
 class StartPage:
     def __init__(self, screen):
         self.SCREEN = screen
+        self.done = False
+        self.uis = {}
 
-    def draw(self, screen=None, x_m_h=120, x_m_v=-70, m_m_h=-250, m_m_v=-160, f_m_h=0, f_m_v=75, m_s=120,
+    def draw(self, screen=None, text=u'', x_m_h=120, x_m_v=-70, m_m_h=-250, m_m_v=-160, f_m_h=0, f_m_v=75, m_s=120,
              f_s=42, l_m_h=0, l_m_v=155, l_s=36):
 
         xuo_margin_horizontal = x_m_h
@@ -46,6 +48,7 @@ class StartPage:
         my_size = m_s
         footer_size = f_s
         load_size = l_s
+        xuo_size = (543, 125)
 
         if screen is None:
             screen = self.SCREEN
@@ -57,7 +60,7 @@ class StartPage:
 
         screen_center = screen.get_rect().center
 
-        xuo_logo_white = pygame.transform.scale(pygame.image.load('./res/assets/XUOIcon-White.png'), (543, 125))
+        xuo_logo_white = pygame.transform.scale(pygame.image.load('./res/assets/XUOIcon-White.png'), xuo_size)
         xuo_logo_white_rect = xuo_logo_white.get_rect()
         xuo_logo_white_rect.center = (screen_center[0] + xuo_margin_horizontal,
                                       screen_center[1] + xuo_margin_vertical)
@@ -85,7 +88,10 @@ class StartPage:
             page_root.find('load_font').text, load_size)
         footer_text = footer.render('XUOGROUP PRESENTS', True,
                                     art.get_colors(page_root.find('footer_color').text))
-        load_text = load.render(u'正在加载……', True, art.get_colors(page_root.find('load_color').text))
+        if self.done:
+            load_text = load.render(u'点击屏幕开始游戏', True, art.get_colors(page_root.find('load_color').text))
+        else:
+            load_text = load.render(u'载入……', True, art.get_colors(page_root.find('load_color').text))
         load_rect = load_text.get_rect()
         load_rect.center = (screen_center[0] + load_margin_horizontal,
                             screen_center[1] + load_margin_vertical)
@@ -96,3 +102,50 @@ class StartPage:
         screen.blit(footer_text, footer_rect)
         screen.blit(load_text, load_rect)
         # screen blit
+
+    def load(self):
+        ui_size = (50, 50)
+        box_size = (15, 15)
+        if self.done:
+            pass
+        else:
+            self.uis = {'back': pygame.transform.scale(pygame.image.load('./res/ui/ui_back.png'), ui_size),
+                        'next': pygame.transform.scale(pygame.image.load('./res/ui/ui_next.png'), ui_size),
+                        'up': pygame.transform.scale(pygame.image.load('./res/ui/ui_up.png'), ui_size),
+                        'down': pygame.transform.scale(pygame.image.load('./res/ui/ui_down.png'), ui_size),
+                        'checkbox': {
+                            'on': pygame.transform.scale(pygame.image.load('./res/ui/ui_checkbox.png'), box_size),
+                            'off': pygame.transform.scale(
+                                pygame.image.load('./res/ui/ui_checkbox_off.png'), box_size)
+                            },
+                        'radiobutton': {'on': pygame.transform.scale(pygame.image.load('./res/ui/ui_radiobutton.png'),
+                                                                     box_size),
+                                        'off': pygame.transform.scale(
+                                            pygame.image.load('./res/ui/ui_radiobutton_off.png'), box_size)
+                                        },
+                        'yes': {'off': pygame.transform.scale(pygame.image.load('./res/ui/ui_yes.png'),
+                                                              ui_size),
+                                'hover': pygame.transform.scale(
+                                    pygame.image.load('./res/ui/ui_yes_hover.png'), ui_size)
+                                },
+                        'no': {'off': pygame.transform.scale(pygame.image.load('./res/ui/ui_no.png'),
+                                                             ui_size),
+                               'hover': pygame.transform.scale(
+                                   pygame.image.load('./res/ui/ui_no_hover.png'), ui_size)
+                               }, 'ok': {'off': pygame.transform.scale(pygame.image.load('./res/ui/ui_ok.png'),
+                                                                       ui_size),
+                                         'hover': pygame.transform.scale(
+                                             pygame.image.load('./res/ui/ui_ok_hover.png'), ui_size)
+                                         }}
+            self.done = True
+        return self.uis
+
+
+class MainMenuPage:
+    def __init__(self, screen):
+        self.SCREEN = screen
+
+    def draw(self, screen=None):
+        if screen is None:
+            screen = self.SCREEN
+        page_root = Et.parse('./res/xml/style.xml').getroot().find('pages').find('mainmenu')

@@ -21,5 +21,7 @@
 # Follow us on <http://www.xuogroup.top>!
 # Thank you for choosing XUOGROUP software!
 ########################################################################################################################
-START_PAGE = 'START_PAGE'
-
+START_PAGE = 'PAGE_START_PAGE'
+LOADING_PAGE = 'PAGE_LOADING_PAGE'
+MAIN_MENU_PAGE = 'PAGE_MAIN_MENU_PAGE'
+GOODBYE_PAGE = 'PAGE_GOODBYE_PAGE'

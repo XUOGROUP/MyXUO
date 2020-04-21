@@ -16,5 +16,9 @@
         <switch>
             <font>./res/font/NotoSansHans-Light.otf</font>
         </switch>
+        <mainmenu>
+            <bg_color>friendship blue</bg_color>
+            <font>./res/font/NotoSansHans-Light.otf</font>
+        </mainmenu>
     </pages>
 </style>
