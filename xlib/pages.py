@@ -24,6 +24,7 @@
 import pygame
 import xml.etree.cElementTree as Et
 import art
+import animate
 
 SCREEN_ICON = './res/assets/XIcon.png'
 
@@ -33,6 +34,7 @@ class StartPage:
         self.SCREEN = screen
         self.done = False
         self.uis = {}
+        self.music = ''
 
     def draw(self, screen=None, text=u'', x_m_h=120, x_m_v=-70, m_m_h=-250, m_m_v=-160, f_m_h=0, f_m_v=75, m_s=120,
              f_s=42, l_m_h=0, l_m_v=155, l_s=36):
@@ -91,7 +93,7 @@ class StartPage:
         if self.done:
             load_text = load.render(u'点击屏幕开始游戏', True, art.get_colors(page_root.find('load_color').text))
         else:
-            load_text = load.render(u'载入……', True, art.get_colors(page_root.find('load_color').text))
+            load_text = load.render(u'正在载入……', True, art.get_colors(page_root.find('load_color').text))
         load_rect = load_text.get_rect()
         load_rect.center = (screen_center[0] + load_margin_horizontal,
                             screen_center[1] + load_margin_vertical)
@@ -145,7 +147,41 @@ class MainMenuPage:
     def __init__(self, screen):
         self.SCREEN = screen
 
-    def draw(self, screen=None):
+    def draw(self, screen, main):
         if screen is None:
             screen = self.SCREEN
         page_root = Et.parse('./res/xml/style.xml').getroot().find('pages').find('mainmenu')
+        bg_color = art.get_colors(page_root.find('bg_color').text)[:]
+        text_color = art.get_colors('white')[:]
+        t_font = pygame.font.Font(page_root.find('font').text, 50)
+        scr_rect = screen.get_rect()
+        clock = animate.new_clock()
+        for alpha in range(0, 255, 5):
+            pygame.event.get()
+            bg_color[3] = alpha
+            screen.fill(bg_color)
+            main.blit(screen, (0, 0))
+            pygame.display.update()
+            clock.tick(animate.RAPID_FPS)
+        new_text = t_font.render(u'新战役', True, text_color)
+        load_text = t_font.render(u'载入存储游戏', True, text_color)
+        shop_text = t_font.render(u'商店', True, text_color)
+        set_text = t_font.render(u'选项', True, text_color)
+        exit_text = t_font.render(u'退出', True, text_color)
+        new_rect = new_text.get_rect()
+        load_rect = load_text.get_rect()
+        shop_rect = shop_text.get_rect()
+        set_rect = set_text.get_rect()
+        exit_rect = exit_text.get_rect()
+        ct = scr_rect.center
+        new_rect.center = (ct[0], ct[1] - 200)
+        load_rect.center = (ct[0], ct[1] - 100)
+        shop_rect.center = ct
+        set_rect.center = (ct[0], ct[1] + 100)
+        exit_rect.center = (ct[0], ct[1] + 200)
+        screen.blit(new_text, new_rect)
+        screen.blit(load_text, load_rect)
+        screen.blit(shop_text, shop_rect)
+        screen.blit(set_text, set_rect)
+        screen.blit(exit_text, exit_rect)
+        main.blit(screen, (0, 0))

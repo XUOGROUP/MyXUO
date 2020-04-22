@@ -26,52 +26,73 @@ import pygame
 import sys
 import os
 import xlib
-
-
 # Import modules
+
+MUSIC_VOLUME = 0.1
+# Variables
+
+
 def flush(alpha, main):
     main.blit(alpha, (0, 0))
     pygame.display.update()
 
 
 if __name__ == '__main__':
-    pygame.init()
+    pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.mixer.init()
+    pygame.init()
     # Init pygame
 
-    mainClock = xlib.animate.new_clock()
-    currentPage = xlib.values.START_PAGE
-
     os.environ['SDL_VIDEO_WINDOW_POS'] = '%d, %d' % xlib.format.SCREEN_LOCATION
-
     # Set window location
 
     screen_main = pygame.display.set_mode(xlib.format.SCREEN_SIZE)
-    screen_main_rect = screen_main.get_rect()
-
     alpha_main = screen_main.convert_alpha()
-    alpha_main_rect = alpha_main.get_rect()
-
     pygame.display.set_caption(xlib.format.SCREEN_TITLE)
     main_icon = pygame.image.load(xlib.pages.SCREEN_ICON)
     pygame.display.set_icon(main_icon)
     # Create screens
+
     start_page = xlib.pages.StartPage(alpha_main)
+    start_page.draw(alpha_main)
+    flush(alpha_main, screen_main)
+    # Display
+
+    main_menu = xlib.pages.MainMenuPage(alpha_main)
+
+    pygame.mixer.music.load('./res/sound/bg_start.ogg')
+    pygame.mixer.music.set_volume(0.1)
+    pygame.mixer.music.play(-1)
+    # Init mixer and play music
+
+    mainClock = xlib.animate.new_clock()
+    currentPage = xlib.values.START_PAGE
     running = True
 
     while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+        events = pygame.event.get()
+
         if currentPage == xlib.values.START_PAGE and not start_page.done:
-            start_page.draw(alpha_main)
             flush(alpha_main, screen_main)
             # Draw loading
-
             uis = start_page.load()
-            # Load
+            flush(alpha_main, screen_main)
+        elif currentPage == xlib.values.START_PAGE and start_page.done:
             start_page.draw(alpha_main)
+
+        for e in events:
+            if e.type == pygame.QUIT:
+                running = False
+            elif currentPage == xlib.values.START_PAGE and e.type == pygame.MOUSEBUTTONDOWN:
+                xlib.sound.se_click.play()
+                main_menu.draw(alpha_main, screen_main)
+                currentPage = xlib.values.MAIN_MENU_PAGE
+            elif e.type == pygame.MOUSEBUTTONDOWN:
+                xlib.sound.se_click.play()
+
         flush(alpha_main, screen_main)
         mainClock.tick(xlib.animate.RAPID_FPS)
+
+    pygame.mixer.music.stop()
     pygame.quit()
     sys.exit(0)

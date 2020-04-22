@@ -28,6 +28,7 @@ import format
 import animate
 import ai
 import values
+import sound
 
 __XLIB_TARGET = 'MyXUO'
 __LICENSE_HEAD = '''

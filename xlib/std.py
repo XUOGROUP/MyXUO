@@ -55,3 +55,16 @@ def destroy(target):
     del target
     gc.collect()
 
+
+def isIn(point, rect):
+    x, y = point
+    x = int(x)
+    y = int(y)
+    # Rect should be: (left, top, width, height)
+    if int(rect[0]) <= x <= int(rect[0]) + int(rect[2]):
+        if int(rect[1]) <= y <= int(rect[1] + int(rect[3])):
+            return True
+        else:
+            return False
+    else:
+        return False
